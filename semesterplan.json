@@ -18,7 +18,7 @@
     "wi": {
         "s1": ["WQM 01", "WWI 01", "WINF 01", "WBWL 01"],
         "s2": ["WWI 02", "WINF 02", "WQM 02", "WBWL 02"],
-        "s3": ["WWI 03", "WWI 04", "WINF 03", "WQM 03", "WBWL 04"],
+        "s3": ["WWI 03", "WWI 04, So 2", "WINF 03", "WQM 03", "WBWL 04"],
         "s4": ["WWI 5", "WINF 04", "WQM 05", "WQM 04"],
         "s5": ["WWI7", "WWI 06", "WVWL 01"],
         "s6": []
