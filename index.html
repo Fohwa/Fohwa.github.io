@@ -37,12 +37,12 @@
         <label for="semester">Semester:</label>
 
         <select name="semester" id="semester">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
+            <option value="s1">1</option>
+            <option value="s2">2</option>
+            <option value="s3">3</option>
+            <option value="s4">4</option>
+            <option value="s5">5</option>
+            <option value="s6">6</option>
         </select>
 
         <button class="button" onclick="semesterClick()">Anzeigen</button>
@@ -91,20 +91,34 @@
         sucheModul(obj, search);
     }
 
+    // speichern des Semesterplan in der variablen plan
+    const fileSemesterPlan = "https://fohwa.github.io/semesterplan.json";
+
+        
+    var plan = null;
+
+    getData(fileSemesterPlan).then(x => {
+        plan = x;
+    })
+
     function semesterClick() {
         const studiengang = document.getElementById('studiengang').value;
         const semester = document.getElementById('semester').value;
 
+        console.log(plan)
+        const module = plan[studiengang][semester];
 
-        const fileSemesterPlan = "https://fohwa.github.io/semesterplan";
+        //clear List
+        document.getElementById('resultList').innerHTML = "";
 
-        /*
-        var plan = null;
 
-        getData(file).then(x => {
-            plan = x;
-        })
-        */
+        //Loop through needed modules and add them to dom
+        for (i = 0; i < module.length; i++) {
+            console.log(module[i])
+
+            addToDom(obj[findModule(obj, module[i])]);
+        }
+        
 
         
 
