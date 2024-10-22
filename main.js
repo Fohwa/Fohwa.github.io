@@ -1,78 +1,101 @@
 
 //neues Element hinzufügen
-function addModule(bwlKuerzel, vwlKuerzel, wiKuerzel, modulbezeichnung, pruefer, duration, vorgezogen, date) {
+function addToDom(obj) {
+
+    //convert obj to variables
+    const bwltag = obj["Modulnumm\ner BWL"];
+    const vwltag = obj["Modulnumm\ner VWL"];
+    const witag = obj["Modulnumm\ner WI"];
+    const modulbezeichnung = obj.Modulbezeichnungen;
+    const pruefungName = obj.Prüfung;
+    const prueferIn = obj["Prüfer:in"];
+    const dauer = obj["Dauer (Min.)"];
+    const vorgezogen = obj["Anmeldung\nvorgezogen\n(JA/NEIN)"];
+    const date = convertDate(obj);
+
+
     // Create the <li> element
     const li = document.createElement('li');
 
-    // Create the container div
-    const container = document.createElement('div');
-    container.className = 'container result';
+    // div
+    const div = document.createElement('div');
+    div.className = 'container result';
 
     // Create the <p> elements for BWL, VWL, WI Kuerzel
     const bwlP = document.createElement('p');
     bwlP.className = 'tag bwltag';
-    bwlP.id = 'bwlkuerzel';
-    bwlP.textContent = bwlKuerzel;
+    bwlP.textContent = bwltag;
 
     const vwlP = document.createElement('p');
     vwlP.className = 'tag vwltag';
-    vwlP.id = 'vwlkuerzel';
-    vwlP.textContent = vwlKuerzel;
+    vwlP.textContent = vwltag;
 
     const wiP = document.createElement('p');
     wiP.className = 'tag witag';
-    wiP.id = 'wikuerzel';
-    wiP.textContent = wiKuerzel;
+    wiP.textContent = witag;
 
-    // Create <h2> for Modulbezeichnung
-    const modulH2 = document.createElement('h2');
-    modulH2.id = 'Modulbezeichnung';
-    modulH2.textContent = modulbezeichnung;
+    // Create <h2> for Name der Prüfung
+    const pruefung = document.createElement('h2');
+    pruefung.textContent = pruefungName;
+
+    // Create <p> for Name der Prüfung
+    const modulbez = document.createElement('p');
+    modulbez.textContent = modulbezeichnung;
 
     // Create <h3> for Prüfer:in
     const prueferH3 = document.createElement('h3');
-    prueferH3.id = 'pruefer';
-    prueferH3.textContent = 'Prüfer:in: ' + pruefer;
+    prueferH3.textContent = 'Prüfer:in: ' + prueferIn;
 
     // Create <p> for Duration
     const durationP = document.createElement('p');
-    durationP.id = 'duration';
-    durationP.textContent = 'Dauer: ' + duration + ' Minuten';
+    if (dauer) {
+        durationP.textContent = 'Dauer: ' + dauer + ' Minuten';
+    }
+    
 
     // Create <p> for Vorgezogen
     const vorgezogenP = document.createElement('p');
-    vorgezogenP.id = 'vorgezogen';
-    vorgezogenP.textContent = 'Klausur: ' + vorgezogen;
+    vorgezogenP.textContent = 'vorgezogen: ' + vorgezogen;
 
     // Create <p> for Date
     const dateP = document.createElement('p');
-    dateP.id = 'date';
-    dateP.textContent = 'Datum und Uhrzeit: ' + date;
+    dateP.textContent = 'Zeit: ' + date;
 
-    // Create <button> for "mehr"
-    const button = document.createElement('button');
-    button.className = 'button';
-    button.id = 'mehr';
-    button.textContent = 'mehr';
+    // Append all the elements to the li
+    div.appendChild(bwlP);
+    div.appendChild(vwlP);
+    div.appendChild(wiP);
+    div.appendChild(document.createElement('br'));
+    div.appendChild(pruefung);
+    div.appendChild(modulbez);
+    div.appendChild(prueferH3);
+    div.appendChild(durationP);
+    div.appendChild(vorgezogenP);
+    div.appendChild(dateP);
+    div.appendChild(document.createElement('br'));
 
-    // Append all the elements to the container div
-    container.appendChild(bwlP);
-    container.appendChild(vwlP);
-    container.appendChild(wiP);
-    container.appendChild(document.createElement('br'));
-    container.appendChild(modulH2);
-    container.appendChild(prueferH3);
-    container.appendChild(durationP);
-    container.appendChild(vorgezogenP);
-    container.appendChild(dateP);
-    container.appendChild(document.createElement('br'));
-    container.appendChild(button);
-
-    // Append the container div to the <li> element
-    li.appendChild(container);
+    // append div to li
+    li.appendChild(div);
 
     // Append the <li> to the <ul> with the id "moduleList"
     document.getElementById('resultList').appendChild(li);
+}
+
+function convertDate(obj) {
+    var date = String(obj.Datum);
+    if (date.length === 7) {
+        date = date[0] + '.' + date[1] + date[2] + '.' + date.substring(3);
+    } else if (date.length === 8) {
+        date = date[0] + date[1] + '.' + date[2] + date[3] + '.' + date.substring(4);
+    }
+
+    var result = obj.Tag + " " + date + " " + obj.Beginn;
+
+    if(obj.Beginn) {
+        result += " Uhr";
+    }
+
+    return result;
 }
 
 function requestSync(theUrl)
@@ -97,15 +120,11 @@ async function getData(url) {
     }
   }
 
-
-function addToDom(obj) {
-    addModule(obj["Modulnumm\ner BWL"], obj["Modulnumm\ner VWL"], obj["Modulnumm\ner WI"], obj.Modulbezeichnungen, obj["Prüfer:in"], obj["Dauer (Min.)"], obj.Klausurtyp, obj["Datum"] + " " + obj["Beginn"]);
-}
-
 function findModule(obj, moduleCode) {
     //custom code in ModulName umwandeln
     //aufteilen in BWL VWL und WI
     var modulart = "";
+
 
     if (moduleCode[0] === "B") {
         modulart = "Modulnumm\ner BWL";
@@ -118,12 +137,13 @@ function findModule(obj, moduleCode) {
     const name = moduleCode.substring(1);
 
 
+
     for (var i = 0; i < obj.length; i++) {
-        if (obj[i][modulart] = name) {
-            return i;
+        if (obj[i][modulart] === name) {
+            console.log(obj[i])
+            addToDom(obj[i]);  
         }
     }
-    return -1
 }
 
 

@@ -133,12 +133,12 @@ p {
 
 /* Red Button */
 #semestersuche {
-    background-color: #d32f2f;  /* Red button */
+    background-color: #482fd3;  /* Red button */
     color: #ffffff;
 }
 
 #semestersuche:hover {
-    background-color: #b71c1c;  /* Darker red on hover */
+    background-color: #36249c;  /* Darker red on hover */
 }
 
 /* mehr button */
