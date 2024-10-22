@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abmeldung</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+    
+
+
+</head>
+<body>
+    <div class="navbar container" style="width: 100%;">
+        <h1><a href="/">Ham Exam</a></h1>
+        <ul>
+            
+            <li><a href="/suche">Suche</a></li>
+            <li><a href="/uebersicht">Übersicht</a></li>
+            <li><a href="/info">Info</a></li>
+        </ul>
+    </div>
+
+    <!-- Semestercheck -->
+     <div class="container">
+        <h1>Semestercheck</h1>
+        <p>Wähle Studiengang und Semester aus</p>
+
+        <label for="studiengang">Studiengang:</label>
+
+        <select name="studiengang" id="studiengang">
+            <option value="bwl">BWL</option>
+            <option value="vwl">VWL</option>
+            <option value="wi">WI</option>
+        </select>
+
+        <label for="semester">Semester:</label>
+
+        <select name="semester" id="semester">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+
+        <button class="button" onclick="semesterClick()">Anzeigen</button>
+        
+     </div>
+
+
+    <!-- Modulsuche -->
+    <div class="container">
+        <h1>Modulsuche</h1>
+        
+        
+        <div class="input-container">
+            <label for="suchbegriff">Modulname:</label>
+            <input type="text" id="suchbegriff" placeholder="Modulname oder Modulkürzel" class="inputField" />
+        </div>
+
+        <button class="button" id="modulsuche" onclick="searchClick()">Suche</button>
+
+    
+    </div>
+
+    <!-- Suchergebnisse -->
+        <ul id="resultList" class="result">
+            
+        </ul>
+
+    
+
+
+</body>
+
+<script>
+    const file = "https://fohwa.github.io/klausurenWiSe24.json";
+
+    var obj = null;
+
+    getData(file).then(x => {
+        obj = x;
+    })
+
+
+    function searchClick() {
+        const search = document.getElementById('suchbegriff').value;
+
+        sucheModul(obj, search);
+    }
+
+    function semesterClick() {
+        const studiengang = document.getElementById('studiengang').value;
+        const semester = document.getElementById('semester').value;
+
+
+        const fileSemesterPlan = "https://fohwa.github.io/semesterplan";
+
+        /*
+        var plan = null;
+
+        getData(file).then(x => {
+            plan = x;
+        })
+        */
+
+        
+
+    }
+
+    
+
+</script>
+
+</html>

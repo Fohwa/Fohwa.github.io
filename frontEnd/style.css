@@ -1,0 +1,163 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;  /* Dark background */
+    color: #e0e0e0;  /* Light text color */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-x: unset;
+
+}
+
+.navbar {
+    width: 100%;
+align-content: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline;
+  }
+
+li {
+    display: inline;
+    margin-left: 5rem;
+}
+
+.navbar li a {
+    text-decoration: none;
+}
+
+.navbar h1 {
+    display: inline;
+}
+
+.navbar h1 a {
+    text-decoration: none;
+}
+
+.result {
+    width: 40%;
+}
+
+.result p {
+    text-align: left;
+    margin-left: 2rem;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #9b0606;
+    color: #f1f1f1;
+    font-size: 14px;
+    padding: 6px 12px;
+    margin: 4px;
+    border-radius: 5px;
+    cursor: default;
+  }
+
+.bwltag {
+    background-color: #4CAF50;
+}
+
+.vwltag {
+    background-color: #2196F3;
+}
+
+.witag {
+    background-color: #FF9800;
+}
+
+
+
+.container {
+    text-align: center;
+    background-color: #1e1e1e;  /* Slightly lighter dark background for the container */
+    /*padding: 20px; */
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);  /* Darker shadow effect */
+    box-sizing: border-box;
+    max-width: 80%;
+    width: 30rem;
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: #ffffff;  /* White for the main heading */
+}
+
+p {
+    font-size: 18px;
+    color: #b3b3b3;  /* Lighter text for paragraphs */
+    margin-bottom: 20px;
+}
+
+.inputField {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    width: 80%;
+    background-color: #333;
+    color: white;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;  /* Smooth transition effect */
+}
+
+
+/* Purple Button */
+#modulsuche {
+    background-color: #6a0dad;  /* Purple button */
+    color: #ffffff;
+}
+
+#modulsuche:hover {
+    background-color: #5a0ca3;  /* Darker purple on hover */
+}
+
+/* Red Button */
+#semestersuche {
+    background-color: #d32f2f;  /* Red button */
+    color: #ffffff;
+}
+
+#semestersuche:hover {
+    background-color: #b71c1c;  /* Darker red on hover */
+}
+
+/* mehr button */
+#mehr {
+    background-color: #0c4716;  /* Purple button */
+    color: #ffffff;
+}
+
+#mehr:hover {
+    background-color: #08300e;  /* Darker purple on hover */
+}
+
+.icon {
+    height: 2rem;
+    width: 2rem;
+    
+}
+
+a {
+    color: #b3b3b3;
+}
+
