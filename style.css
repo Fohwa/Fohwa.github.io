@@ -14,11 +14,12 @@ body {
 
 .navbar {
     width: 100%;
-align-content: center;
+    align-content: center;
 }
 
 ul {
     list-style-type: none;
+    align-content: center;
     margin: 0;
     padding: 0;
     display: inline;
@@ -26,7 +27,8 @@ ul {
 
 li {
     display: inline;
-    margin-left: 5rem;
+    list-style: none;
+    align-content: center;
 }
 
 .navbar li a {
@@ -39,10 +41,11 @@ li {
 
 .navbar h1 a {
     text-decoration: none;
+    text-align: left;
 }
 
 .result {
-    width: 40%;
+
 }
 
 .result p {
